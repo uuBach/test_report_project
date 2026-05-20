@@ -1,6 +1,5 @@
 import os
 import logging
-from typing import Any
 
 import requests
 import pandas as pd
@@ -58,7 +57,7 @@ def send_telegram_message(token: str, chat_id: str, text: str) -> None:
         logging.warning("Failed to send Telegram notification: %s", error)
 
 
-def fetch_report(api_key: str) -> dict[str, Any]:
+def fetch_report(api_key: str) -> dict:
     headers = {
         "X-API-Key": api_key
     }
@@ -72,7 +71,7 @@ def fetch_report(api_key: str) -> dict[str, Any]:
     return response.json()
 
 
-def extract_unique_phones(report: dict[str, Any]) -> list[str]:
+def extract_unique_phones(report: dict) -> list[str]:
     result = report.get("data", {}).get("result", [])
 
     if not isinstance(result, list):
