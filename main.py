@@ -16,7 +16,7 @@ def setup_logging() -> None:
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(message)s",
         handlers=[
-            logging.FileHandler(LOG_FILE),
+            logging.FileHandler(LOG_FILE, encoding="utf-8"),
             logging.StreamHandler()
         ]
     )
@@ -85,7 +85,7 @@ def extract_unique_phones(report: dict) -> list[str]:
 
         phone = item.get("msisdn")
 
-        if phone:
+        if phone is not None and str(phone).strip():
             phones.append(str(phone).strip())
 
     unique_phones = sorted(set(phones))

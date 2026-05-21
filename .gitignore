@@ -3,3 +3,4 @@ venv/
 *.log
 *.xlsx
 __pycache__/
+.DS_Store
