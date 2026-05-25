@@ -169,8 +169,11 @@ def extract_unique_phones(report: dict[str, Any]) -> list[str]:
 
         phone = str(phone).strip()
 
-        if phone:
-            phones.append(phone)
+        if not phone:
+            logging.warning("Skipped item at index %s: empty 'msisdn'", index)
+            continue
+
+        phones.append(phone)
 
     unique_phones = sorted(set(phones))
 
